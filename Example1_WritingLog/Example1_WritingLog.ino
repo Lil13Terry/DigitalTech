@@ -27,7 +27,7 @@ String myFile = "myExampleFile.txt"
  } else {
   Serial.println(F("File found!"));
 }
-//choose the file I set up and save the following in it
+//choose the file I set up and save the following in it 
  myLog.append(myFile);
  myLog.println("This goes to the log file");
 //syncs the data to the SD before moving on
