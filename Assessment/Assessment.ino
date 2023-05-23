@@ -2,16 +2,13 @@
 #include "SparkFun_Qwiic_OpenLog_Arduino_Library.h"
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
-// HAN NOTES what does creating objects like bigLog and sensorsensor let us do?
+// helps to know the name of my log and my sensor
 OpenLog bigLog;
 LPS25HB SensorSensor;
 
-//  HAN NOTES Is this variable openlogaddress used anywhere? tell me where or delete please
-const byte OpenLogAddress = 42;
-
-// WHATS THIS DO?
+// runs code once
 void setup() {
-  //  HAN NOTES what do all 
+  //  writing terminal at a data rate of 9600bps, starts up my log, my sensor, and calls the wire library 
   Serial.begin(9600);
   Wire.begin();
   SensorSensor.begin();
