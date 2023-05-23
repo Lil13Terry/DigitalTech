@@ -18,20 +18,20 @@ void setup() {
   bigLog.begin();
 
   
-  // WHATS THIS DO?
+  // if sensor is not connected, print line "LPS25HB disconnected. Reset the board to try again."
   if (SensorSensor.isConnected() == false) {
     Serial.println("LPS25HB disconnected. Reset the board to try again.");
   }
-// WHATS THIS DO?
+// attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
   bigLog.append("appendMe.txt");
   bigLog.println("This is recorded to appendMe.txt");
 }
-// WHATS THIS DO?
+// loops code until arduino is turned off
 void loop() {
-  // WHATS THIS DO?
+  // print sensors pressure and temperature
   Serial.print(SensorSensor.getPressure_hPa());
   Serial.print(", ");
   Serial.println(SensorSensor.getTemperature_degC());
-// WHATS THIS DO?
+// delays the code by 40 milliseconds
   delay(40);
 }
