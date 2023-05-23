@@ -1,3 +1,4 @@
+// including libraries into code
 #include <Wire.h>
 #include "SparkFun_Qwiic_OpenLog_Arduino_Library.h"
 #include <SparkFun_LPS25HB_Arduino_Library.h>
@@ -8,9 +9,11 @@ LPS25HB SensorSensor;
 
 // runs code once
 void setup() {
-  //  writing terminal at a data rate of 9600bps, starts up my log, my sensor, and calls the wire library 
+  //  writing terminal at a data rate of 9600bps
   Serial.begin(9600);
+  // calls the wire library 
   Wire.begin();
+  //  starts up my log and my sensor
   SensorSensor.begin();
   bigLog.begin();
 
