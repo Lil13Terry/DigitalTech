@@ -19,6 +19,7 @@ void setup() {
 
   
   // if sensor is not connected, print line "LPS25HB disconnected. Reset the board to try again."
+  //HAN NOTES How can you adjust this so that it starts a csv file? the first line of a csv are the headings for all subsequent lines
   if (SensorSensor.isConnected() == false) {
     Serial.println("LPS25HB disconnected. Reset the board to try again.");
   }
@@ -35,3 +36,5 @@ void loop() {
 // delays the code by 40 milliseconds
   delay(40);
 }
+//HAN NOTES I would look at making some methods to help make your code purpose clearer
+//HAN NOTES a suggestion would be one to setup the sdcard and another to take and write sensor readings
