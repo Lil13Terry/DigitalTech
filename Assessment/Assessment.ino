@@ -4,8 +4,8 @@
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
 // helps to know the name of my log and my sensor
-OpenLog bigLog;
-LPS25HB SensorSensor;
+OpenLog SDLog;
+LPS25HB SensorSD;
 
 // runs code once
 void setup() {
@@ -14,25 +14,24 @@ void setup() {
   // calls the wire library 
   Wire.begin();
   //  starts up my log and my sensor
-  SensorSensor.begin();
-  bigLog.begin();
+  SensorSD.begin();
+  SDLog.begin();
 
   
-  // if sensor is not connected, print line "LPS25HB disconnected. Reset the board to try again."
-  //HAN NOTES How can you adjust this so that it starts a csv file? the first line of a csv are the headings for all subsequent lines
-  if (SensorSensor.isConnected() == false) {
-    Serial.println("LPS25HB disconnected. Reset the board to try again.");
+  // if sensor is not connected, print line "SensorSD hasn't worked, reset board and retry
+  if (SensorSD.isConnected() == false) {
+    Serial.println("SensorSD hasn't worked, reset board and retry");
   }
 // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
-  bigLog.append("appendMe.txt");
-  bigLog.println("This is recorded to appendMe.txt");
+  SDLog.append("appendMe.txt");
+  SDLog.println("Time,hPa,Total");
 }
 // loops code until arduino is turned off
 void loop() {
   // print sensors pressure and temperature
-  Serial.print(SensorSensor.getPressure_hPa());
+  Serial.print(SensorSD.getPressure_hPa());
   Serial.print(", ");
-  Serial.println(SensorSensor.getTemperature_degC());
+  Serial.println(SensorSD.getTemperature_degC());
 // delays the code by 40 milliseconds
   delay(40);
 }
