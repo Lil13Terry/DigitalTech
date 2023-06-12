@@ -1,6 +1,6 @@
 // including libraries into code
 #include <Wire.h>
-#include "SparkFun_Qwiic_OpenLog_Arduino_Library.h"
+#include <SparkFun_Qwiic_OpenLog_Arduino_Library.h>
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
 // helps to know the name of my log and my sensor
@@ -23,8 +23,8 @@ void setup() {
     Serial.println("SensorSD hasn't worked, reset board and retry");
   }
 // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
-  SDLog.append("appendMe.txt");
-  SDLog.println("Time,hPa,Total");
+  SDLog.append("TerrySensor.txt");
+  SDLog.println("hPa,Temp, Millis");
 }
 // loops code until arduino is turned off
 void loop() {
