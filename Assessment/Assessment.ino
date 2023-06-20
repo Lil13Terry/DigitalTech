@@ -6,33 +6,39 @@
 // helps to know the name of my log and my sensor
 OpenLog SDLog;
 LPS25HB SensorSD;
-
+String filename = "TerrySensor.txt";
+unsigned long TerrysTime = -99;
 // runs code once
 void setup() {
   //  writing terminal at a data rate of 9600bps
   Serial.begin(9600);
-  // calls the wire library 
+  // calls the wire library
   Wire.begin();
   //  starts up my log and my sensor
   SensorSD.begin();
   SDLog.begin();
 
-  
+
   // if sensor is not connected, print line "SensorSD hasn't worked, reset board and retry
   if (SensorSD.isConnected() == false) {
     Serial.println("SensorSD hasn't worked, reset board and retry");
   }
-// attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
-  SDLog.append("TerrySensor.txt");
+  // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
+  SDLog.append(filename);
   SDLog.println("hPa,Temp, Millis");
 }
 // loops code until arduino is turned off
 void loop() {
+  TerrysTime = millis();
+
   // print sensors pressure and temperature
   Serial.print(SensorSD.getPressure_hPa());
   Serial.print(", ");
   Serial.println(SensorSD.getTemperature_degC());
-// delays the code by 40 milliseconds
+  Serial.print(", ");
+  Serial.println(TerrysTime);
+
+  // delays the code by 40 milliseconds
   delay(40);
 }
 //HAN NOTES I would look at making some methods to help make your code purpose clearer
