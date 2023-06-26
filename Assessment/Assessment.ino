@@ -34,12 +34,12 @@ void loop() {
   // print sensors pressure and temperature
   Serial.print(SensorSD.getPressure_hPa());
   Serial.print(", ");
-  Serial.println(SensorSD.getTemperature_degC());
+  Serial.println(SensorSD.getTemperature_degC()); 
   Serial.print(", ");
   Serial.println(TerrysTime);
 
   // delays the code by 40 milliseconds
   delay(40);
 }
-//HAN NOTES I would look at making some methods to help make your code purpose clearer
+//HAN NOTES I would look at making some methods to help make your code purpose clearer 
 //HAN NOTES a suggestion would be one to setup the sdcard and another to take and write sensor readings
