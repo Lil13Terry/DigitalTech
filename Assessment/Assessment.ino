@@ -8,7 +8,7 @@ OpenLog SDLog;
 LPS25HB SensorSD;
 String filename = "TerrySensor.txt";
 unsigned long TerrysTime = -99;
-// runs code once
+// runs code once   //HAN NOTES when does it run them once?
 void setup() {
   //  writing terminal at a data rate of 9600bps
   Serial.begin(9600);
@@ -26,12 +26,15 @@ void setup() {
   // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
   SDLog.append(filename);
   SDLog.println("hPa,Temp, Millis");
+  //HAN NOTES *hint* do you want to sync things now?
 }
 // loops code until arduino is turned off
 void loop() {
- 
-}
+   //HAN NOTES you should call your method here or it wont get run
+  
+} 
 
+//HAN NOTES I would suggest that you want (boolean testing) and not () on the line below
 void testMethod(){
   TerrysTime = millis();
   if (testing){
@@ -47,9 +50,7 @@ void testMethod(){
   SDLog.println(SensorSD.getTemperature_degC());
   SDLog.print(", ");
   SDLog.println(TerrysTime);
-
+  //HAN NOTES *hint* do you want to sync things now?
   }
   delay(40);
 }
-//HAN NOTES I would look at making some methods to help make your code purpose clearer
-//HAN NOTES a suggestion would be one to setup the sdcard and another to take and write sensor readings
