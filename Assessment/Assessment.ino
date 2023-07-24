@@ -8,6 +8,7 @@ OpenLog SDLog;
 LPS25HB SensorSD;
 String filename = "TerrySensor.txt";
 unsigned long TerrysTime = -99;
+
 // setup the SDCard and SensorSD, checks that they work
 void setup() {
   //  writing terminal at a data rate of 9600bps
@@ -28,13 +29,14 @@ void setup() {
   SDLog.println("hPa,Temp, Millis");
   SDLog.syncFile();
 }
+
 // loops code until arduino is turned off
 void loop() {
-  //HAN NOTES you should call your method here or it wont get run
+  //calls a method to do sensor stuff, false means it will print to sd card any values
   testMethod(false);
 }
 
-//HAN NOTES I would suggest that you want (boolean testing) and not () on the line below
+//prints pressure, temp, and time to the sd card or the serial monitor depending on the value of testing
 void testMethod(boolean testing) {
   TerrysTime = millis();
   if (testing) {
