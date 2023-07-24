@@ -15,15 +15,15 @@ void setup() {
   Serial.begin(9600);
   // calls the wire library
   Wire.begin();
-  //  starts up my log and my sensor
+  //  starts up SDLog and SensorSD
   SensorSD.begin();
   SDLog.begin();
 
-  // if sensor is not connected, print line "SensorSD hasn't worked, reset board and retry
+  // if sensorSD is not connected, print line "SensorSD hasn't worked, reset board and retry"
   if (SensorSD.isConnected() == false) {
     Serial.println("SensorSD hasn't worked, reset board and retry");
   }
-  // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
+  // attaches text file to SDLog, once doing that it prints line "This is recorded to appendMe.txt"
    SDLog.create(filename);
   SDLog.append(filename);
   SDLog.println("hPa,Temp, Millis");
@@ -32,11 +32,11 @@ void setup() {
 
 // loops code until arduino is turned off
 void loop() {
-  //calls a method to do sensor stuff, false means it will print to sd card any values
+  //calls a method to do sensorSD stuff, false means it will print to SDLog any values
   testMethod(false);
 }
 
-//prints pressure, temp, and time to the sd card or the serial monitor depending on the value of testing
+//prints pressure, temp, and time to the SDLog or the serial monitor depending on the value of testing
 void testMethod(boolean testing) {
   TerrysTime = millis();
   if (testing) {
