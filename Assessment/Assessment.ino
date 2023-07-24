@@ -8,7 +8,7 @@ OpenLog SDLog;
 LPS25HB SensorSD;
 String filename = "TerrySensor.txt";
 unsigned long TerrysTime = -99;
-// runs code once   //HAN NOTES when does it run them once?
+// setup the SDCard and SensorSD, checks that they work
 void setup() {
   //  writing terminal at a data rate of 9600bps
   Serial.begin(9600);
@@ -18,39 +18,39 @@ void setup() {
   SensorSD.begin();
   SDLog.begin();
 
-
   // if sensor is not connected, print line "SensorSD hasn't worked, reset board and retry
   if (SensorSD.isConnected() == false) {
     Serial.println("SensorSD hasn't worked, reset board and retry");
   }
   // attaches text file to log, once doing that it prints line "This is recorded to appendMe.txt"
+   SDLog.create(filename);
   SDLog.append(filename);
   SDLog.println("hPa,Temp, Millis");
-  //HAN NOTES *hint* do you want to sync things now?
+  SDLog.syncFile();
 }
 // loops code until arduino is turned off
 void loop() {
-   //HAN NOTES you should call your method here or it wont get run
-  
-} 
+  //HAN NOTES you should call your method here or it wont get run
+  testMethod(false);
+}
 
 //HAN NOTES I would suggest that you want (boolean testing) and not () on the line below
-void testMethod(){
+void testMethod(boolean testing) {
   TerrysTime = millis();
-  if (testing){
-  // print sensors pressure and temperature
-  Serial.print(SensorSD.getPressure_hPa());
-  Serial.print(", ");
-  Serial.println(SensorSD.getTemperature_degC());
-  Serial.print(", ");
-  Serial.println(TerrysTime);
-  }else{
-  SDLog.print(SensorSD.getPressure_hPa());
-  SDLog.print(", ");
-  SDLog.println(SensorSD.getTemperature_degC());
-  SDLog.print(", ");
-  SDLog.println(TerrysTime);
-  //HAN NOTES *hint* do you want to sync things now?
+  if (testing) {
+    // print sensors pressure and temperature
+    Serial.print(SensorSD.getPressure_hPa());
+    Serial.print(", ");
+    Serial.print(SensorSD.getTemperature_degC());
+    Serial.print(", ");
+    Serial.println(TerrysTime);
+  } else {
+    SDLog.print(SensorSD.getPressure_hPa());
+    SDLog.print(", ");
+    SDLog.print(SensorSD.getTemperature_degC());
+    SDLog.print(", ");
+    SDLog.println(TerrysTime);
+    SDLog.syncFile();
   }
   delay(40);
 }
